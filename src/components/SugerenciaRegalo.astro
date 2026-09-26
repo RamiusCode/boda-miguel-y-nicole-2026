@@ -1,0 +1,216 @@
+<!-- ═══════════════════════════════════════════════════════════ --><!-- 🎁 SECCIÓN: SUGERENCIA DE REGALES                           --><!-- ═══════════════════════════════════════════════════════════ -->
+<section class="relative w-full py-16 sm:py-20 md:py-24 lg:py-32">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- 📇 CARD DE MESA DE REGALOS -->
+        <div class="flex justify-center">
+            <div class="relative w-[300px]" id="card-regalos">
+                <!-- BOTÓN DECORATIVO SUPERIOR -->
+                <div
+                    class="absolute z-20"
+                    style="top: -30px; left: 50%; transform: translateX(-50%);"
+                >
+                    <div class="w-16 h-16" id="boton-decorativo-regalos">
+                        <img
+                            src="/imagenes/boton.png"
+                            alt="Decoración"
+                            class="w-full h-full object-contain"
+                        />
+                    </div>
+                </div>
+
+                <!-- CARD PRINCIPAL -->
+                <div
+                    class="relative rounded-[40px] shadow-xl overflow-hidden bg-[#eedfcb]"
+                    id="card-principal-regalos"
+                >
+                    <!-- IMAGEN DE FONDO -->
+                    <img
+                        src="/imagenes/fondo-taupe.webp"
+                        alt="Fondo mesa regalos"
+                        class="absolute inset-0 w-full h-full object-cover"
+                    />
+
+                    <!-- Contenido de la card -->
+                    <div
+                        class="relative px-4 py-12 z-10 flex flex-col items-center"
+                    >
+                        <!-- TÍTULO PRINCIPAL -->
+                        <div class="text-center mb-6" id="titulo-regalos">
+                            <h2
+                                class="font-great-vibes text-[2.25rem] text-[#5a4632] leading-tight"
+                            >
+                                Sugerencia de Regales
+                            </h2>
+                        </div>
+
+                        <!-- IMAGEN SOBRE -->
+                        <div
+                            class="flex justify-center mb-6"
+                            id="imagen-sobre-regalo"
+                        >
+                            <img
+                                src="/imagenes/sobre.png"
+                                alt="Sobre de regalo"
+                                class="w-16 h-auto object-contain"
+                                style="filter: brightness(0) invert(1);"
+                            />
+                        </div>
+
+                        <!-- TEXTO DESCRIPTIVO -->
+                        <div class="text-center" id="texto-regalos">
+                            <p
+                                class="font-cormorant text-xl text-[#5a4632] leading-relaxed"
+                            >
+                                El mejor obsequio es<br />
+                                su presencia y bendición.
+                            </p>
+                            <div class="flex items-center justify-center gap-2 my-4">
+                                <div class="w-8 h-px bg-[#5a4632]/40"></div>
+                                <div class="w-1.5 h-1.5 rounded-full bg-[#5a4632]/60"></div>
+                                <div class="w-8 h-px bg-[#5a4632]/40"></div>
+                            </div>
+                            <p
+                                class="font-cormorant text-lg text-[#5a4632] leading-relaxed"
+                            >
+                                Si desean contribuir a construir<br />
+                                nuestra nueva etapa, les sugerimos<br />
+                                que sea mediante lluvia de sobres<br />
+                                el día del evento o escaneando<br />
+                                el siguiente QR.
+                            </p>
+                            <p class="font-great-vibes text-[1.75rem] text-[#5a4632] mt-4">
+                                Muchas gracias
+                            </p>
+
+                            <!-- QR -->
+                            <div class="flex justify-center mt-4">
+                                <img
+                                    src="/imagenes/qr.webp"
+                                    alt="Código QR para regalo"
+                                    class="w-60 max-w-full h-auto bg-white p-2 rounded-lg shadow-md"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- 🎬 ANIMACIONES CON GSAP - SOLO AL BAJAR                     -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <script>
+        import { gsap } from "gsap";
+        import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+        gsap.registerPlugin(ScrollTrigger);
+
+        if (typeof window !== "undefined") {
+            document.addEventListener("DOMContentLoaded", () => {
+                // Animación del botón decorativo
+                gsap.fromTo(
+                    "#boton-decorativo-regalos",
+                    {
+                        opacity: 0,
+                        scale: 0,
+                        rotation: -180,
+                    },
+                    {
+                        opacity: 1,
+                        scale: 1,
+                        rotation: 0,
+                        duration: 1,
+                        ease: "back.out(1.7)",
+                        scrollTrigger: {
+                            trigger: "#card-regalos",
+                            start: "top 80%",
+                            toggleActions: "play none none none",
+                        },
+                    },
+                );
+
+                // Animación de la card
+                gsap.fromTo(
+                    "#card-principal-regalos",
+                    {
+                        opacity: 0,
+                        y: 50,
+                        scale: 0.95,
+                    },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        scale: 1,
+                        duration: 1,
+                        ease: "power3.out",
+                        scrollTrigger: {
+                            trigger: "#card-regalos",
+                            start: "top 80%",
+                            toggleActions: "play none none none",
+                        },
+                    },
+                );
+
+                // Animación del título
+                gsap.fromTo(
+                    "#titulo-regalos",
+                    {
+                        opacity: 0,
+                        y: -20,
+                    },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.8,
+                        ease: "power2.out",
+                        scrollTrigger: {
+                            trigger: "#card-regalos",
+                            start: "top 80%",
+                            toggleActions: "play none none none",
+                        },
+                    },
+                );
+
+                // Animación de la imagen sobre
+                gsap.fromTo(
+                    "#imagen-sobre-regalo",
+                    { opacity: 0, scale: 0.8 },
+                    {
+                        opacity: 1,
+                        scale: 1,
+                        duration: 0.8,
+                        delay: 0.2,
+                        ease: "back.out(1.7)",
+                        scrollTrigger: {
+                            trigger: "#card-regalos",
+                            start: "top 80%",
+                            toggleActions: "play none none none",
+                        },
+                    },
+                );
+
+                // Animación del texto
+                gsap.fromTo(
+                    "#texto-regalos",
+                    {
+                        opacity: 0,
+                        y: 20,
+                    },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.8,
+                        delay: 0.2,
+                        ease: "power2.out",
+                        scrollTrigger: {
+                            trigger: "#card-regalos",
+                            start: "top 80%",
+                            toggleActions: "play none none none",
+                        },
+                    },
+                );
+            });
+        }
+    </script>
+</section>

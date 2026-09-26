@@ -1,0 +1,334 @@
+---
+// Portada.astro
+---
+
+<section id="portada-bienvenida" class="fixed inset-0 w-full h-screen z-50 flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#FFFFFF] via-[#FAF3EC] to-[#F3E3D4]">
+
+    <!-- Viñeta sutil para dar profundidad -->
+    <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_55%,rgba(201,178,146,0.18)_100%)]"></div>
+
+    <!-- Esquinas decorativas doradas -->
+    <div class="esquina-deco absolute top-5 left-5 sm:top-7 sm:left-7 w-12 h-12 border-t border-l border-[#C9B292]"></div>
+    <div class="esquina-deco absolute top-5 right-5 sm:top-7 sm:right-7 w-12 h-12 border-t border-r border-[#C9B292]"></div>
+    <div class="esquina-deco absolute bottom-5 left-5 sm:bottom-7 sm:left-7 w-12 h-12 border-b border-l border-[#C9B292]"></div>
+    <div class="esquina-deco absolute bottom-5 right-5 sm:bottom-7 sm:right-7 w-12 h-12 border-b border-r border-[#C9B292]"></div>
+
+    <!-- Decoración superior izquierda - Flores Arriba -->
+    <div class="absolute top-0 left-0 w-80 md:w-64 lg:w-72 opacity-90 animate-fade-in-down">
+        <img src="/imagenes/FloresArriba.webp" alt="Flores decorativas" class="w-full h-auto" />
+    </div>
+
+    <!-- Decoración inferior derecha - misma imagen de arriba, volteada 180° -->
+    <div class="absolute bottom-0 right-0 w-80 md:w-64 lg:w-72 opacity-90 animate-fade-in-up">
+        <img src="/imagenes/FloresArriba.webp" alt="Flores decorativas" class="w-full h-auto rotate-180" />
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="relative z-10 flex flex-col items-center justify-center px-6 py-8 w-full max-w-md">
+
+        <!-- Línea superior elegante -->
+        <p id="portada-overline" class="font-serif text-[#B39A72] text-sm sm:text-base tracking-[0.4em] uppercase mb-1">
+            Nuestra Boda
+        </p>
+
+        <!-- Marco con flores y nombres -->
+        <div id="contenedor-principal" class="relative w-full flex justify-center items-center">
+            
+            <!-- Imagen del marco con flores (FloresCentro.webp) -->
+            <div class="relative w-[21rem] h-[21rem] sm:w-[26rem] sm:h-[26rem] md:w-[28rem] md:h-[28rem]">
+                <img
+                    id="marco-flores"
+                    src="/imagenes/FloresCentro.webp"
+                    alt="Marco decorativo"
+                    class="w-full h-full object-contain"
+                />
+                
+                <!-- Nombres de los novios DENTRO del marco -->
+                <div class="absolute inset-0 flex flex-col items-center justify-center px-8">
+                    <h2 id="nombre-john" class="font-great-vibes text-5xl sm:text-6xl md:text-7xl text-[#B39A72] tracking-wide text-center">
+                        Miguel
+                    </h2>
+                    
+                    <div id="ampersand" class="flex items-center gap-3 my-3">
+                        <div class="w-12 h-px bg-gradient-to-r from-transparent to-[#C9B292]"></div>
+                        <span class="text-[#B39A72] text-3xl sm:text-4xl font-charm italic">y</span>
+                        <div class="w-12 h-px bg-gradient-to-l from-transparent to-[#C9B292]"></div>
+                    </div>
+                    
+                    <h2 id="nombre-damarys" class="font-great-vibes text-5xl sm:text-6xl md:text-7xl text-[#B39A72] tracking-wide text-center">
+                        Nicole
+                    </h2>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Botón INGRESAR -->
+        <div class="mt-2 flex justify-center">
+            <button
+                id="btn-ingresar"
+                class="group relative px-12 py-3.5 bg-[#C9B292] hover:bg-[#B39A72] text-white font-serif text-sm md:text-base uppercase tracking-[0.3em] rounded-md shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
+            >
+                <!-- Borde interior fino (detalle elegante) -->
+                <span class="pointer-events-none absolute inset-1.5 rounded-[3px] border border-white/40 transition-all duration-300 group-hover:inset-[7px]"></span>
+
+                <span class="relative z-10">Ingresar</span>
+            </button>
+        </div>
+
+        <!-- Fecha elegante -->
+        <div id="portada-fecha" class="mt-7 flex items-center justify-center gap-3 text-[#8A7456]">
+            <span class="w-8 h-px bg-[#C9B292]"></span>
+            <span class="font-serif text-sm sm:text-base tracking-[0.25em] pl-[0.25em] uppercase whitespace-nowrap">07 · Noviembre · 2026</span>
+            <span class="w-8 h-px bg-[#C9B292]"></span>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- 🎬 ANIMACIONES CON GSAP                                     -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<script>
+    import { gsap } from "gsap";
+
+    document.addEventListener('DOMContentLoaded', () => {
+        console.log("💐 Iniciando animaciones de portada...");
+
+        // ═══ ESQUINAS DECORATIVAS - Fade in suave ═══
+        gsap.fromTo(
+            ".esquina-deco",
+            { opacity: 0, scale: 0.6 },
+            { opacity: 1, scale: 1, duration: 1, ease: "power2.out", stagger: 0, delay: 0.3 }
+        );
+
+        // ═══ LÍNEA SUPERIOR "Nuestra Boda" ═══
+        gsap.fromTo(
+            "#portada-overline",
+            { opacity: 0, y: -20, letterSpacing: "0.7em" },
+            { opacity: 1, y: 0, letterSpacing: "0.4em", duration: 1, ease: "power2.out", delay: 0.3 }
+        );
+
+        // ═══ MARCO CON FLORES - Scale desde el centro ═══
+        gsap.fromTo(
+            "#marco-flores",
+            { opacity: 0, scale: 0.3, rotation: -5 },
+            {
+                opacity: 1,
+                scale: 1,
+                rotation: 0,
+                duration: 1.2,
+                ease: "back.out(1.5)",
+                delay: 0.3
+            }
+        );
+
+        // ═══ ROTACIÓN SUAVE DEL MARCO (loop infinito muy sutil) ═══
+        gsap.to("#marco-flores", {
+            rotation: 2,
+            duration: 4,
+            ease: "sine.inOut",
+            yoyo: true,
+            repeat: -1,
+            delay: 1.5
+        });
+
+        // ═══ NOMBRE JOHN - Letra por letra ═══
+        const textoJohn = "Miguel";
+        const contenedorJohn = document.getElementById("nombre-john");
+        if (contenedorJohn) {
+            contenedorJohn.innerHTML = textoJohn
+                .split("")
+                .map(
+                    (letra) =>
+                        `<span class="letra-animada" style="
+                            opacity: 0; 
+                            display: inline-block; 
+                            transform: translateY(20px) scale(0.8);
+                            filter: blur(3px);
+                        ">${letra === " " ? "&nbsp;" : letra}</span>`
+                )
+                .join("");
+
+            gsap.to("#nombre-john .letra-animada", {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                filter: "blur(0px)",
+                duration: 0.5,
+                ease: "power2.out",
+                stagger: { each: 0.05, from: "start" },
+                delay: 0.3
+            });
+        }
+
+        // ═══ SÍMBOLO Y con líneas - Scale con bounce ═══
+        gsap.fromTo(
+            "#ampersand",
+            { opacity: 0, scale: 0.5 },
+            { opacity: 1, scale: 1, duration: 0.6, ease: "back.out(2)", delay: 0.3 }
+        );
+
+        // ═══ NOMBRE DAMARYS - Letra por letra ═══
+        const textoDamarys = "Nicole";
+        const contenedorDamarys = document.getElementById("nombre-damarys");
+        if (contenedorDamarys) {
+            contenedorDamarys.innerHTML = textoDamarys
+                .split("")
+                .map(
+                    (letra) =>
+                        `<span class="letra-animada" style="
+                            opacity: 0; 
+                            display: inline-block; 
+                            transform: translateY(20px) scale(0.8);
+                            filter: blur(3px);
+                        ">${letra === " " ? "&nbsp;" : letra}</span>`
+                )
+                .join("");
+
+            gsap.to("#nombre-damarys .letra-animada", {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                filter: "blur(0px)",
+                duration: 0.5,
+                ease: "power2.out",
+                stagger: { each: 0.05, from: "start" },
+                delay: 0.3
+            });
+        }
+
+        // ═══ BOTÓN INGRESAR CON FUNCIONALIDAD ═══
+        const btnIngresar = document.getElementById('btn-ingresar');
+        const portada = document.getElementById('portada-bienvenida');
+
+        // Animación de entrada del botón
+        gsap.fromTo(
+            "#btn-ingresar",
+            { opacity: 0, y: 30, scale: 0.9 },
+            { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "back.out(1.5)", delay: 0.3 }
+        );
+
+        // ═══ FECHA ELEGANTE ═══
+        gsap.fromTo(
+            "#portada-fecha",
+            { opacity: 0, y: 20 },
+            { opacity: 1, y: 0, duration: 0.8, ease: "power2.out", delay: 0.3 }
+        );
+
+        btnIngresar?.addEventListener('click', () => {
+            console.log("🚪 Cerrando portada...");
+
+            // 🎵 Iniciar la música SOLO ahora, al presionar Ingresar
+            const audio = new Audio("/musica/melodia.mp3");
+            audio.loop = true;
+            audio.volume = 0.5;
+            audio.play().catch((error: any) => {
+                console.log("Error al reproducir audio:", error);
+            });
+
+            // Guardar en window para que NombresFlores pueda controlarlo
+            (window as any).audioGlobal = audio;
+            (window as any).estaReproduciendoGlobal = true;
+
+            // Actualizar iconos inmediatamente
+            setTimeout(() => {
+                const iconoPlay = document.getElementById("icono-play");
+                const iconoPause = document.getElementById("icono-pause");
+
+                if (iconoPlay && iconoPause) {
+                    iconoPlay.classList.add("hidden");
+                    iconoPause.classList.remove("hidden");
+                }
+            }, 100);
+
+            // 🌸 Avisar a NombresFlores que arranque su animación de entrada
+            window.dispatchEvent(new CustomEvent("portada-abierta"));
+
+            // Animación de salida suave
+            gsap.to(portada, {
+                opacity: 0,
+                scale: 0.95,
+                duration: 0.6,
+                ease: "power2.inOut",
+                onComplete: () => {
+                    portada?.remove();
+                    // Ir a NombresFlores, la primera sección
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    console.log("✅ Portada cerrada");
+                }
+            });
+        });
+
+        console.log("✨ Animaciones de portada completadas!");
+    });
+</script>
+
+<style>
+    /* Fuentes personalizadas (Great Vibes se carga en el layout) */
+    .font-great-vibes {
+        font-family: 'Great Vibes', cursive;
+    }
+
+    .font-charm {
+        font-family: 'Great Vibes', 'Dancing Script', cursive;
+    }
+
+    /* Animaciones de entrada */
+    @keyframes fade-in-down {
+        from {
+            opacity: 0;
+            transform: translateY(-30px);
+        }
+        to {
+            opacity: 0.9;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fade-in-up {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 0.9;
+            transform: translateY(0);
+        }
+    }
+
+    .animate-fade-in-down {
+        animation: fade-in-down 1s ease-out forwards;
+    }
+
+    .animate-fade-in-up {
+        animation: fade-in-up 1s ease-out forwards;
+        animation-delay: 0.2s;
+    }
+
+    /* Efecto hover en letras animadas */
+    .letra-animada {
+        transition: all 0.3s ease;
+        will-change: transform, opacity, filter;
+        position: relative;
+    }
+
+    .letra-animada:hover {
+        transform: translateY(-3px) scale(1.1) !important;
+        text-shadow: 0 0 15px rgba(201, 178, 146, 0.5) !important;
+    }
+
+    /* Prevenir scroll mientras está la portada */
+    body:has(#portada-bienvenida) {
+        overflow: hidden;
+    }
+
+    /* Optimización de rendimiento */
+    #marco-flores,
+    .letra-animada {
+        backface-visibility: hidden;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+</style>
