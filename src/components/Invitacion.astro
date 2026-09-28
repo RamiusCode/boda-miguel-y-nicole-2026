@@ -1,0 +1,60 @@
+---
+// src/components/Invitacion.astro
+// La invitación completa. La usan index.astro y pase[numero].astro,
+// así no hay que copiar la página para cada cantidad de pases.
+import Layout from "../layouts/Layout.astro";
+
+export interface Props {
+    pases: number;
+}
+const { pases } = Astro.props;
+
+import Portada from "./Portada.astro";
+import NombresFlores from "./NombresFlores.astro";
+import Contador from "./Contador.astro";
+import DirecionCeremonia from "./DireccionCeremonia.astro";
+import DirecionRecepcion from "./DireccionRecepcion.astro";
+import NombresPadres from "./NombresPadres.astro";
+import Padrinos from "./Padrinos.astro";
+import Fotos from "./Fotos.astro";
+import Itinerario from "./Itinerario.astro";
+import CodigoVestimenta from "./CodigoVestimenta.astro";
+import SugerenciaRegalo from "./SugerenciaRegalo.astro";
+import Fotos2 from "./Fotos2.astro";
+import Fotos3 from "./Fotos3.astro";
+import Restriccion from "./Restriccion.astro";
+import Confirmar from "./Confirmar.astro";
+import Compartirfotos from "./Compartirfotos.astro";
+import Reproductor from "./Reproductor.astro";
+import Despedida from "./Despedida.astro";
+import Calendario from "./Calendario.astro";
+import Cita from "./Cita.astro";
+import Galeria from "./Galeria.astro";
+import Pase from "./Pase.astro";
+---
+
+<Layout title="Miguel & Nicole">
+    <Portada />
+    <NombresFlores />
+    <Cita />
+    <!-- <Reproductor /> -->
+    <Contador />
+    <Calendario />
+    <DirecionCeremonia />
+    <DirecionRecepcion />
+    <NombresPadres />
+    <Padrinos />
+
+    <!-- <Fotos /> -->
+    <Itinerario />
+    <Pase pases={pases} />
+    <CodigoVestimenta />
+    <SugerenciaRegalo />
+    <!-- <Fotos2 /> -->
+    <Restriccion />
+    <Compartirfotos />
+    <Confirmar />
+    <Galeria />
+    <!-- <Fotos3 /> -->
+    <Despedida />
+</Layout>

@@ -1,0 +1,19 @@
+---
+// src/pages/pase[numero].astro
+// Una sola página que genera /pase1, /pase2, ... /pase10.
+// El número del link es la cantidad de pases del invitado.
+// Si hace falta más, se cambia solo MAXIMO_PASES (Astro exige que viva
+// dentro de getStaticPaths).
+import Invitacion from "../components/Invitacion.astro";
+
+export function getStaticPaths() {
+    const MAXIMO_PASES = 10;
+    return Array.from({ length: MAXIMO_PASES }, (_, i) => ({
+        params: { numero: String(i + 1) },
+    }));
+}
+
+const pases = Number(Astro.params.numero);
+---
+
+<Invitacion pases={pases} />
